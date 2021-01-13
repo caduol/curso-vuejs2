@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ contador }}</p>
+      <button @click="somar(5,$event)">Soma</button>
+      <p @mousemove="atualizarXY">
+        Mouse: {{x}} e {{y}}
+
+        <!-- 
+          usando o modificador de evento stop para parar a
+          propagação do evento vinda do pai. Os modificadores
+          podem ser encadeados como no exemplo abaixo 'stop.prevent'
+        -->
+        <span @mousemove.stop.prevent="">PARAR AQUI!!</span>
+      </p>
+
+      <!-- 
+        usando o modificador de evento prevent para prevenir 
+        o comportamento padrão - nesse caso de navegar até o endereço 
+      -->
+      <a @click.prevent="" href="http://google.com.br">Google</a>
+      <hr />
+
+      <!-- 
+        usando o modificador de evento 'enter.alt' dentro do input será
+        entendido que só exibirá o alerta no momento em que o enter e o alt estiverem
+        sidos precionados juntos 
+      -->
+      <input type="text" @keyup.enter.alt="exibirAlerta" />
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          contador: 0,
+          x: 0,
+          y: 0,
+        },
+        methods: {
+          somar(num, e) {
+            console.log(num, e);
+            return (this.contador += num);
+          },
+          atualizarXY(e) {
+            this.x = e.clientX;
+            this.y = e.clientY;
+          },
+          exibirAlerta() {
+            alert("Alertando");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

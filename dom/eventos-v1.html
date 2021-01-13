@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ contador }}</p>
+      <!-- USANDO $event para interceptard dados de evento -->
+      <button @click="somar(5,$event)">Soma</button>
+      <p @mousemove="atualizarXY">Mouse: {{x}} e {{y}}</p>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          contador: 0,
+          x: 0,
+          y: 0,
+        },
+        methods: {
+          somar(num, e) {
+            console.log(num, e);
+            return (this.contador += num);
+          },
+          atualizarXY(e) {
+            this.x = e.clientX;
+            this.y = e.clientY;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
