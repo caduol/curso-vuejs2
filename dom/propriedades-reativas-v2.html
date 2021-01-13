@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="aumentar">Aumentar</button>
+      <button @click="contador2++">Aumentar 2</button>
+      <button @click="diminuir">Diminuir</button>
+      <p>Contador {{ contador }} | {{contador2 }}</p>
+      <p>Resultado: {{ resultado }}</p>
+    </div>
+    <!-- 
+      As atualizações refletem no todo na view, há um impacto a exemplo
+      do uso da propriedade 'contador2' que mesmo não tendo relação com o
+      a execução do método'resultado', acaba exibindo a saida no console. Para resolver
+      esse dilema é que utilizamos a propriedade computada, ou seja, computed. Dessa forma
+      se mantém o cache, chamando a função somente quando o recalculo for necessario, 
+      isolando cada propriedade não gerando impacto no vue, e a forma de se chamar é
+      como normalmente é chamado uma propriedade.
+
+     -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          contador: 0,
+          contador2: 0,
+        },
+        methods: {
+          aumentar() {
+            this.contador++;
+          },
+          diminuir() {
+            this.contador--;
+          },
+          // resultado() {
+          //   console.log("metodo resultado");
+          //   return this.contador >= 5 ? "Maior ou igual a 5" : "Menor que 5";
+          // },
+        },
+        computed: {
+          resultado() {
+            return this.contador >= 5 ? "Maior ou igual a 5" : "Menor que 5";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

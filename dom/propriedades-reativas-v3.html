@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="aumentar">Aumentar</button>
+      <button @click="contador2++">Aumentar 2</button>
+      <button @click="diminuir">Diminuir</button>
+      <p>Contador {{ contador }} | {{contador2 }}</p>
+      <p>Resultado: {{ resultado }}</p>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          contador: 0,
+          contador2: 0,
+        },
+        watch: {
+          // watch é usado para monitorar a atividade de uma determinada propriedade
+          contador(n, o) {
+            setTimeout(() => {
+              this.contador = 0;
+            }, 3000);
+          },
+        },
+        computed: {
+          // as propriedades computadas são sincronas, após chamá-las obrigatoriamente deve
+          // ser retornado valor
+          resultado() {
+            return this.contador >= 5 ? "Maior ou igual a 5" : "Menor que 5";
+          },
+        },
+        methods: {
+          aumentar() {
+            this.contador++;
+          },
+          diminuir() {
+            this.contador--;
+          },
+          // resultado() {
+          //   console.log("metodo resultado");
+          //   return this.contador >= 5 ? "Maior ou igual a 5" : "Menor que 5";
+          // },
+        },
+      });
+    </script>
+  </body>
+</html>
