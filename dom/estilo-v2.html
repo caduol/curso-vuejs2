@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #app {
+        display: flex;
+        justify-content: space-around;
+      }
+      .demo {
+        width: 100px;
+        height: 100px;
+        background: #ccc;
+      }
+
+      .c1 {
+        background: #ea1222;
+      }
+
+      .c2 {
+        background: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- nesse primeiro caso o template pode ficar
+         muito mais carregado de informação lógica 
+        -->
+      <div
+        class="demo"
+        :class="{c1:aplicarC1,c2: !aplicarC1}"
+        @click="aplicarC1 = !aplicarC1"
+      ></div>
+
+      <!-- nesse segundo caso o template fica
+         muito mais limpo utilizando uma computed property para
+         realizar o bind na class, podendo ser um forte aliado quando
+         necessitar de uma informação logica mais complexa 
+        -->
+      <div class="demo" :class="estilo1" @click="aplicarC1 = !aplicarC1"></div>
+      <div class="demo"></div>
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          aplicarC1: false,
+        },
+        computed: {
+          estilo1() {
+            return {
+              c1: this.aplicarC1,
+              c2: !this.aplicarC1,
+            };
+          },
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

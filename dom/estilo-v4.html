@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .caixas {
+        display: flex;
+        justify-content: space-around;
+      }
+      .demo {
+        width: 100px;
+        height: 100px;
+        background: #ccc;
+      }
+
+      .c1 {
+        background: #ea1222;
+      }
+
+      .c2 {
+        background: green;
+      }
+      .c3 {
+        background: blue;
+      }
+
+      .girar {
+        transform: rotate(45deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="caixas">
+        <!--  aplicando estilo bind com estilo -->
+        <div class="demo" :style="{'background-color':cor}"></div>
+        <div class="demo" :style="[meuEstilo, {height:altura}]"></div>
+        <div class="demo"></div>
+      </div>
+      <hr />
+      <input type="text" v-model="cor" placeholder="cor" />
+      <input type="text" v-model="largura" placeholder="largura" />
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          cor: "red",
+          largura: 100,
+          altura: "30px",
+        },
+        computed: {
+          meuEstilo() {
+            return {
+              backgroundColor: this.cor,
+              width: `${this.largura}px`,
+            };
+          },
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>

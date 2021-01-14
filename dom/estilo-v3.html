@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .caixas {
+        display: flex;
+        justify-content: space-around;
+      }
+      .demo {
+        width: 100px;
+        height: 100px;
+        background: #ccc;
+      }
+
+      .c1 {
+        background: #ea1222;
+      }
+
+      .c2 {
+        background: green;
+      }
+      .c3 {
+        background: blue;
+      }
+
+      .girar {
+        transform: rotate(45deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="caixas">
+        <div
+          class="demo"
+          :class="{c1:aplicarC1,c2:!aplicarC1}"
+          @click="aplicarC1 = !aplicarC1"
+        ></div>
+        <div
+          class="demo"
+          :class="estilo1"
+          @click="aplicarC1 = !aplicarC1"
+        ></div>
+        <!-- formas de aplicar as classes -->
+        <div class="demo" :class="[classeCSS,{girar:aplicarGirar}]"></div>
+      </div>
+      <hr />
+      <input type="text" v-model="classeCSS" />
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          aplicarC1: false,
+          classeCSS: "c1",
+          aplicarGirar: true,
+        },
+        computed: {
+          estilo1() {
+            return {
+              c1: this.aplicarC1,
+              c2: !this.aplicarC1,
+            };
+          },
+        },
+        methods: {},
+      });
+    </script>
+  </body>
+</html>
