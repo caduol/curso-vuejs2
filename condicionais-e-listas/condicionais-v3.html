@@ -1,0 +1,37 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+  <!-- Renderização condicional com o uso do v-if e template 
+    Ao utilizar o template a renderização apresentará somente os paragrafos,
+    ou seja, ele mostra somente seu conteudo interno
+  -->
+  <template v-if="logado">
+    <p>Usuário Logado: {{usuario }}</p>
+    <p>Perfil: Admin</p>
+  </template>
+  <p v-else-if="anonimo">Navegando como Anonimo</p>
+  <p v-else>Nenhum usuário Logado</p>
+  <button @click="logado = !logado">{{logado?'Sair':'Entrar'}}</button>
+  <div>
+    <label for=""
+      ><input type="checkbox" v-model="anonimo" /> Navegação anonima
+    </label>
+  </div>
+
+  <hr />
+  <!-- Renderização condicional com o uso do v-show
+   -->
+  <footer v-show="logado">Desenvolvido para você</footer>
+</div>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      usuario: "Maria",
+      logado: false,
+      anonimo: false,
+    },
+  });
+</script>
