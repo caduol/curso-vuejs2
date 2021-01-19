@@ -1,0 +1,42 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app1">
+  {{titulo1}}
+  <button @click="alterar">Alterar</button>
+</div>
+
+<div id="app2">
+  {{titulo2}}
+  <button @click="alterar">Alterar</button>
+</div>
+
+<script>
+  const vm1 = new Vue({
+    el: "#app1",
+    data: {
+      titulo1: "teste 1",
+    },
+    methods: {
+      alterar() {
+        vm2.titulo2 += "???";
+      },
+    },
+  });
+  const vm2 = new Vue({
+    el: "#app2",
+    data: {
+      titulo2: "teste 1",
+    },
+    methods: {
+      alterar() {
+        vm1.titulo1 += "!!!";
+      },
+    },
+  });
+
+  // usando instancia externa e alterando valor
+  setTimeout(() => {
+    vm1.titulo1 = "alterando pelo timer!";
+  }, 2000);
+</script>
