@@ -14,13 +14,14 @@
 </template>
 
 <script>
+import barramento from '@/barramento'
 export default {
   props: {
     nome: {
       type: String,
       default: "Anonimo",
     },
-    reiniciarFn: Function,
+    reiniciarFn: Function,  
     idade: Number,
   },
   methods: {
@@ -32,6 +33,11 @@ export default {
       this.$emit("nomeMudou", this.nome);
     },
   },
+  created(){
+      barramento.quandoIdadeMudar(idade => {
+          this.idade = idade
+      })
+  }
 };
 </script>
 
